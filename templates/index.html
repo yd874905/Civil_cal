@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Book</title>
+  <style>
+    /* General styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 90%; /* Set container width */
+      max-width: 1200px; /* Set maximum container width */
+      margin: 0 auto; /* Center the container */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .footer{
+      text-align: center;
+      background-color: #BED7DC;
+    }
+    /* Form styling */
+    form {
+      margin-bottom: 20px;
+      text-align: center; /* Center align the content */
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 60%; /* Set width to 60% of its container */
+      max-width: 400px; /* Set maximum width */
+      box-sizing: border-box; /* Include padding and border in the width */
+    }
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form action="{{ url_for('home') }}" method="POST">
+      <label>Enter the Area of Building (int sqft): </label>
+      <input type="number" name="area" required autofocus>
+      <button type="submit">Calculate</button>
+    </form>
+    <table>
+      <tr>
+        {% for ele in header %}
+        <th>{{ele}}</th>
+        {% endfor %}
+      </tr>
+      {% for row in data %}
+      <tr>
+        <td>{{row[0]}}</td>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td>₹{{row[3]}}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        {% for ele in total %}
+        <th>{{ele}}</th>
+        {% endfor %}
+      </tr>
+    </table>
+  </div>
+  <div class="container footer">
+    <footer>
+      <p>By: Yash Dubey</p>
+      <p><a href="">yashdubey@gmail.com</a></p>
+    </footer>
+  </div>
+</body>
+</html>
